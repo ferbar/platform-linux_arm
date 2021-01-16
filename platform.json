@@ -48,7 +48,6 @@
     "framework-raspiarduino": {
       "type": "framework",
       "optional": true,
-      "owner": "pfink",
       "version": "~0.0.2"
     }
   }
