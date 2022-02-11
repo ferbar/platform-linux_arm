@@ -19,15 +19,33 @@ Arduino Framework for RaspberryPI
 https://github.com/me-no-dev/RasPiArduino
 """
 
-from os.path import join
+from os.path import join, isdir
 
-from SCons.Script import DefaultEnvironment
+from SCons.Script import DefaultEnvironment, SConscript
+
 
 env = DefaultEnvironment()
+board = env.BoardConfig()
+
+FRAMEWORK_DIR = env.PioPlatform().get_package_dir("framework-raspiarduino")
+assert isdir(FRAMEWORK_DIR)
+
+#print("=================")
+#print(board)
+# build_core = board.get("build.core", "").lower()
+#variant= board.get("build.variant", "").lower()
+
+#print(env)
+#print("10=================")
+#print(env.Dump())
+#print("20=================")
 
 env.Replace(
     CPPFLAGS=[
-        "-O2",
+#        "-O2",
+        "-O0",
+        "-g",
+        "-rdynamic",
         "-Wformat=2",
         "-Wall",
         "-Winline",
@@ -45,7 +63,7 @@ env.Append(
 
     CPPPATH=[
         join(env.PioPlatform().get_package_dir(
-             "framework-raspiarduino"), "RasPiArduino")
+             "framework-raspiarduino"), "cores/piduino")
     ]
 )
 
@@ -57,7 +75,23 @@ env.Append(
 libs = []
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "FrameworkRasPiArduino"),
-    join(env.PioPlatform().get_package_dir("framework-raspiarduino"), "RasPiArduino")
+    join(env.PioPlatform().get_package_dir("framework-raspiarduino"), "cores/piduino")
+))
+
+# from framework-arduinoespressif32/tools/platformio-build.py
+variants_dir = join(FRAMEWORK_DIR, "variants")
+if "build.variants_dir" in env.BoardConfig():
+    variants_dir = join("$PROJECT_DIR", env.BoardConfig().get("build.variants_dir"))
+
+if "build.variant" in env.BoardConfig():
+    env.Append(
+        CPPPATH=[
+            join(variants_dir, env.BoardConfig().get("build.variant"))
+        ]
+    )
+    libs.append(env.BuildLibrary(
+        join("$BUILD_DIR", "FrameworkRasPiArduinoVariant"),
+        join(variants_dir, env.BoardConfig().get("build.variant"))
 ))
 
 env.Append(LIBS=libs)

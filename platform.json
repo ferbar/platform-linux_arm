@@ -36,6 +36,7 @@
   "packages": {
     "toolchain-gccarmlinuxgnueabi": {
       "type": "toolchain",
+      "optional": true,
       "owner": "platformio",
       "version": "~1.40802.0"
     },
@@ -47,8 +48,7 @@
     },
     "framework-raspiarduino": {
       "type": "framework",
-      "optional": true,
-      "version": "~0.0.2"
+      "optional": true
     }
   }
 }
