@@ -2,10 +2,12 @@
   "build": {
     "extra_flags": "-DRASPBERRYPI -DRASPBERRYPI1",
     "f_cpu": "700000000L",
-    "mcu": "bcm2835"
+    "mcu": "bcm2835",
+    "variant": "bplus"
   },
   "frameworks": [
-    "wiringpi"
+    "wiringpi",
+    "raspiarduino"
   ],
   "name": "Raspberry Pi 1 Model B",
   "upload": {

@@ -1,0 +1,16 @@
+{
+  "build": {
+    "extra_flags": "",
+    "variant": "bplus"
+  },
+  "frameworks": [
+    "raspiarduino"
+  ],
+  "name": "Generic Linux",
+  "upload": {
+    "maximum_ram_size": 1073741824,
+    "maximum_size": 1073741824
+  },
+  "url": "https://www.kernel.org",
+  "vendor": "Linux"
+}

@@ -2,10 +2,12 @@
   "build": {
     "extra_flags": "-DRASPBERRYPI -DRASPBERRYPIZERO",
     "f_cpu": "1000000000L",
-    "mcu": "bcm2835"
+    "mcu": "bcm2835",
+    "variant": "bplus"
   },
   "frameworks": [
-    "wiringpi"
+    "wiringpi",
+    "raspiarduino"
   ],
   "name": "Raspberry Pi Zero",
   "upload": {
