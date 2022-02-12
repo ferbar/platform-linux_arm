@@ -26,7 +26,8 @@ framework = raspiarduino
 lib_deps =
 #   https://github.com/ferbar/RasPiArduino.git
 lib_ldf_mode = off
-platform = https://github.com/ferbar/platform-linux_arm.git#raspiarduino...
+platform = https://github.com/ferbar/platform-linux_arm.git#raspiarduino
+...
 ```
 
 
